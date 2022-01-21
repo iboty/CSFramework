@@ -26,7 +26,7 @@ namespace CSFramework.MVVM.Roles
         }
 
         /// <summary>
-        ///  数据模块与控件属性绑定
+        ///  数据模块与控件属性绑定 
         /// </summary>
         /// <param name="ctrl">绑定控件</param>
         /// <param name="ctrlExpression">控件属性表达式</param>
