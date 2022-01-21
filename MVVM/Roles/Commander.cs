@@ -15,7 +15,7 @@ namespace CSFramework.MVVM.Roles
     /// </summary>
     public class Commander
     {
-        private static readonly Dictionary<RegInfo , RegEventInfo> RegisterDictionary = new Dictionary<RegInfo, RegEventInfo>();
+        private static readonly Dictionary<RegInfo , RegEventInfo>  RegisterDictionary = new Dictionary<RegInfo, RegEventInfo>();
         /// <summary>
         ///  执行过程
         /// </summary>
