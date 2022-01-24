@@ -221,11 +221,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tool\Class1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Interface\" />
     <Folder Include="Controls\Data\" />
-    <Folder Include="Tool\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dlls\CSkin.dll" />
