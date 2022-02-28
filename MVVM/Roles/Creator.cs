@@ -28,7 +28,7 @@ namespace CSFramework.MVVM.Roles
         public static void LoadConfig()
         {
             FactoryDictionary.Clear();
-            var infoList =Read.FrameworkInfo.FactoryInfoList;
+            var infoList  =SysInfoLoader.FrameworkInfo.FactoryInfos;
 
             if (infoList == null) throw new Exception("工厂连接信息为空");
 

@@ -21,7 +21,7 @@ namespace CSFramework.ORM
         {
             ConnDictionary.Clear();
 
-            foreach (var dbInfo in Read.FrameworkInfo.DbInfoList)
+            foreach (var dbInfo in SysInfoLoader.FrameworkInfo.DbConnInfos)
             {
                 var connInfo = DbConvert.DbInfoToConnectionConfig(dbInfo);
                 ConnDictionary.Add(dbInfo.ConnName, connInfo);

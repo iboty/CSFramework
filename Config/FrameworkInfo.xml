@@ -7,5 +7,5 @@
   <DbConnInfos>
     <DbInfo ConnName="默认数据库" ServerIp="127.0.0.1" Port="3306" DbName="DbInstance" User="root" Password="123456" DbType="MySql" IsDefault="true" />
   </DbConnInfos>
-  <LogInfo >
+  <LogInfo />
 </FrameworkInfo>
