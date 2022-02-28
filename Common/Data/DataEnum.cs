@@ -18,7 +18,7 @@
 
     public enum MessageCode
     {
-        Info,
+        Normal,
         Success,
         Fault,
         Warn,

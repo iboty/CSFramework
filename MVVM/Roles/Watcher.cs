@@ -32,11 +32,10 @@ namespace CSFramework.MVVM.Roles
         /// 守护线程方法过程
         /// </summary>
         /// <param name="func">守护方法</param>
-        /// <param name="regInfo"></param>
-        /// <param name="regArgs">运行参数</param>
-        public static void ProcessThread(Action func, RegInfo regInfo, RegArgs regArgs)
+        /// <param name="task"></param>
+        public static void ProcessThread(TaskInfo task, Action func)
         {
-            var thread = new Thread(() => Process(func, regInfo, regArgs)){IsBackground = true};
+            var thread = new Thread(() => Process(task,func)){IsBackground = true};
             thread.Start();
         }
 
@@ -46,9 +45,11 @@ namespace CSFramework.MVVM.Roles
             //防止都线程篡改
             lock (TaskInfoDic)
             {
-                var threadId = Thread.CurrentThread.ManagedThreadId;
-                if (TaskInfoDic.ContainsKey(threadId)) TaskInfoDic[threadId].Add(info);
-                else TaskInfoDic.Add(threadId, new List<TaskInfo> {info});
+                info.ThreadId = Thread.CurrentThread.ManagedThreadId;
+
+                if (TaskInfoDic.ContainsKey(info.ThreadId)) TaskInfoDic[info.ThreadId].Add(info);
+
+                else TaskInfoDic.Add(info.ThreadId, new List<TaskInfo> {info});
             }
         }
 
@@ -64,50 +65,43 @@ namespace CSFramework.MVVM.Roles
             }
         }
 
-        public static void Continue(TaskInfo info)
-        {
-
-        }
-
-
         /// <summary>
         /// 守护方法过程
         /// </summary>
-        /// <param name="func">守护方法</param>
-        /// <param name="regInfo">处理信息</param>
-        /// <param name="regArgs">参数信息</param>
-        public static void Process(Action func, RegInfo regInfo, RegArgs regArgs)
+        /// <param name="func">任务过程</param>
+        /// <param name="task">任务信息</param>
+        public static void Process(TaskInfo task, Action func)
         {
-            //初始化任务
-            var info = new TaskInfo(regInfo, regArgs);
+            //任务准备
+            task.RunStatus = RunStatus.Starting;
+         
 
-            //任务信息添加缓存
-            //收集启动消息
-            Notifier.OnNotifyMsg(info, new NotifyInfo());
+            //如果任务撤销，结束任务
+            if (task.RunStatus == RunStatus.Cancel) return;
+          
+            //添加任务信息
+            LockAddTask(task);
 
-            //撤销
-            if (info.IsCancel) return;
+            //切换任务开始
+            task.RunStatus = RunStatus.Started;
 
-            LockAddTask(info);
-            
-            info.RunInfo.SetStatus(RunStatus.Start,DateTime.Now);
-
-            Exception exception = null;
             try
             {
                 func();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                exception = ex;
+                task.Exception = ex;
             }
-            ;
-            info.RunInfo.SetStatus(RunStatus.End, DateTime.Now);
 
-            LockRemoveTask(info);
+            //任务准备结束
+            task.RunStatus = RunStatus.Ending;
 
-            Notifier.OnNotifyMsg(info, new NotifyInfo(exception));
-            
+            //执行完成，删除任务信息
+            LockRemoveTask(task);
+
+            //切换任务结束状态
+            task.RunStatus = RunStatus.Ended;
         }
     }
 }

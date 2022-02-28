@@ -14,7 +14,7 @@ namespace CSFramework.Common
     /// <summary>
     /// 框架信息加载器
     /// </summary>
-    public  static class FrameworkInfoLoader
+    public  static class SysInfoLoader
     {
         public static string FileDir = $@"{AppDomain.CurrentDomain.BaseDirectory}Config";
         public static string FileName = "FrameworkInfo.xml";
@@ -25,7 +25,12 @@ namespace CSFramework.Common
         /// <summary>
         /// 加载数据
         /// </summary>
-        static FrameworkInfoLoader()
+        static SysInfoLoader()
+        {
+            Read();
+        }
+
+        public static void Read()
         {
             try
             {

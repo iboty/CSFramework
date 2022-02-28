@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using CSFramework.Common.WinForm.StyleBase;
+using CSFramework.Common.WinForm.Privileges.StyleBase;
 using CSFramework.MVVM.Data;
 using CSFramework.MVVM.Roles;
 using CSFramework.MVVM.Interface;

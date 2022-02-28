@@ -65,10 +65,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin, Version=16.1.14.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\CSkin.dll</HintPath>
-    </Reference>
     <Reference Include="DotNetSpeech, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -100,16 +96,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommLib\Converts\DESConvert.cs" />
-    <Compile Include="Common\Data\ComEventArgs.cs" />
     <Compile Include="Common\Data\DataEnum.cs" />
-    <Compile Include="Common\Data\DataTransInfo.cs" />
-    <Compile Include="Common\Data\DbInfo.cs" />
-    <Compile Include="Common\Data\DebugInfo.cs" />
+    <Compile Include="Common\Data\SysLogInfo.cs" />
+    <Compile Include="Common\Data\DbConnInfo.cs" />
     <Compile Include="Common\Data\FactoryInfo.cs" />
     <Compile Include="Common\Data\IpInfo.cs" />
     <Compile Include="Common\Data\PrinterStatusInfo.cs" />
     <Compile Include="Common\Data\FrameworkInfo.cs" />
-    <Compile Include="Common\FrameworkInfoLoader.cs" />
+    <Compile Include="Common\SysInfoLoader.cs" />
     <Compile Include="Common\Helper\ComConvert.cs" />
     <Compile Include="Common\Helper\EsHelper.cs" />
     <Compile Include="Common\Helper\ImageHelper.cs" />
@@ -121,52 +115,37 @@
     <Compile Include="Common\Helper\PrinterHelper.cs" />
     <Compile Include="Common\Helper\SizeHelper.cs" />
     <Compile Include="Common\Helper\StringHelper.cs" />
-    <Compile Include="Common\Helper\TaskHelper.cs" />
     <Compile Include="Common\Helper\TimerHelper.cs" />
     <Compile Include="Common\Helper\Translator.cs" />
     <Compile Include="Common\Helper\VoiceHelper.cs" />
     <Compile Include="Common\Helper\XmlHelper.cs" />
     <Compile Include="Common\Helper\FileHelper.cs" />
-    <Compile Include="Common\Tool\DebugForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Common\Tool\DebugForm.Designer.cs">
-      <DependentUpon>DebugForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Common\Interface\IBaseElement.cs" />
+    <Compile Include="Common\SysLog.cs" />
     <Compile Include="Common\Tool\VoicePlayer.cs" />
-    <Compile Include="Common\WinForm\Common\MessageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Common\WinForm\Common\MessageForm.designer.cs">
-      <DependentUpon>MessageForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Common\WinForm\Common\UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Common\WinForm\Common\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Common\WinForm\Common\UserTip.cs" />
     <Compile Include="Common\WinForm\Controls\DataGridViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\Data\CustomEnum.cs" />
-    <Compile Include="Common\WinForm\Data\IControlDesc.cs" />
+    <Compile Include="Common\WinForm\Privileges\Data\CustomEnum.cs" />
+    <Compile Include="Common\WinForm\Privileges\Data\IPrivilegesDesc.cs" />
     <Compile Include="Common\WinForm\Privileges\Helper\DataHelper.cs" />
     <Compile Include="Common\WinForm\Privileges\Model\PrivilegeModel.cs" />
-    <Compile Include="Common\WinForm\StyleBase\BaseView.cs">
+    <Compile Include="Common\WinForm\Privileges\StyleBase\BaseView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\StyleBase\BMenuButton.cs">
+    <Compile Include="Common\WinForm\Privileges\StyleBase\BButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\StyleBase\BTextBox.cs">
+    <Compile Include="Common\WinForm\Privileges\StyleBase\BDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\StyleBase\BButton.cs">
+    <Compile Include="Common\WinForm\Privileges\StyleBase\BLabel.cs" />
+    <Compile Include="Common\WinForm\Privileges\StyleBase\BMenuButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\StyleBase\BLabel.cs" />
+    <Compile Include="Common\WinForm\Privileges\StyleBase\BTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\FacePlayer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -176,29 +155,22 @@
     <Compile Include="MVVM\Attributes\ConfigLinkAttr.cs" />
     <Compile Include="MVVM\Attributes\InterfaceAttr.cs" />
     <Compile Include="MVVM\Attributes\ValuePropertyAttr.cs" />
-    <Compile Include="MVVM\Data\RegEventInfo.cs" />
-    <Compile Include="MVVM\Data\CustomException.cs" />
+    <Compile Include="MVVM\Data\TaskException.cs" />
     <Compile Include="MVVM\Data\DataEnum.cs" />
-    <Compile Include="MVVM\Data\RegInfo.cs" />
-    <Compile Include="MVVM\Data\MsgInfo.cs" />
     <Compile Include="MVVM\Data\NotifyInfo.cs" />
-    <Compile Include="MVVM\Data\RegArgs.cs" />
-    <Compile Include="MVVM\Data\RunInfo.cs" />
+    <Compile Include="MVVM\Data\RunTime.cs" />
     <Compile Include="MVVM\Data\TaskInfo.cs" />
-    <Compile Include="MVVM\Data\TaskTimer.cs" />
     <Compile Include="MVVM\Factories\MefFactory.cs" />
     <Compile Include="MVVM\Factories\WcfFactory.cs" />
     <Compile Include="MVVM\Helper\DbBindHelper.cs" />
     <Compile Include="MVVM\Helper\MeConvert.cs" />
     <Compile Include="MVVM\Helper\ViewHelper.cs" />
-    <Compile Include="MVVM\Interface\IComEvent.cs" />
-    <Compile Include="MVVM\Interface\IComServer.cs" />
     <Compile Include="MVVM\Interface\IFactory.cs" />
+    <Compile Include="MVVM\Interface\IFuncElement.cs" />
     <Compile Include="MVVM\Interface\IModelView.cs" />
     <Compile Include="MVVM\Models\ModelBackup.cs" />
     <Compile Include="MVVM\Models\ModelBase.cs" />
     <Compile Include="MVVM\Models\ModelList.cs" />
-    <Compile Include="MVVM\Models\ModelStruct.cs" />
     <Compile Include="MVVM\Roles\Binder.cs" />
     <Compile Include="MVVM\Roles\Commander.cs" />
     <Compile Include="MVVM\Roles\Creator.cs" />
@@ -221,11 +193,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tool\Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Interface\" />
+    <Folder Include="Common\WinForm\Common\" />
     <Folder Include="Controls\Data\" />
+    <Folder Include="Tool\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dlls\CSkin.dll" />
@@ -243,12 +215,6 @@
     <None Include="Resources\gif_bg.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Common\Tool\DebugForm.resx">
-      <DependentUpon>DebugForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Common\WinForm\Common\MessageForm.resx">
-      <DependentUpon>MessageForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

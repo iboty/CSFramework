@@ -6,7 +6,7 @@ namespace CSFramework.Common.Data
     /// <summary>
     /// 数据库连接对象
     /// </summary>
-    public class DbInfo
+    public class DbConnInfo
     {
         /// <summary>
         /// 连接名称

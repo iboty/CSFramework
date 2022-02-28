@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSFramework.CommLib.Converts
 {
-    public static class DESConvert
+    public static class DesConvert
     {
         public static byte[] DesVi = {0x01, 0x03, 0x56, 0x01, 0x03, 0x56, 0x01, 0x03 };
 

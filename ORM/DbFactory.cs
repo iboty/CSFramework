@@ -21,7 +21,7 @@ namespace CSFramework.ORM
         {
             ConnDictionary.Clear();
 
-            foreach (var dbInfo in FrameworkInfoLoader.FrameworkInfo.DbInfoList)
+            foreach (var dbInfo in Read.FrameworkInfo.DbInfoList)
             {
                 var connInfo = DbConvert.DbInfoToConnectionConfig(dbInfo);
                 ConnDictionary.Add(dbInfo.ConnName, connInfo);
@@ -52,7 +52,7 @@ namespace CSFramework.ORM
         /// 创建db数据操作对象实体
         /// </summary>
         /// <returns></returns>
-        public static SqlSugarClient CreateDb(DbInfo info)
+        public static SqlSugarClient CreateDb(DbConnInfo info)
         {
             var conn = DbConvert.DbInfoToConnectionConfig(info);
             var client = new SqlSugarClient(conn);

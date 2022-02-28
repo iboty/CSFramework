@@ -1,5 +1,5 @@
 ﻿using System;
-using CSFramework.Common.Data;
+using CSFramework.Common;
 using CSFramework.MVVM.Data;
 
 namespace CSFramework.MVVM.Roles
@@ -9,59 +9,81 @@ namespace CSFramework.MVVM.Roles
     /// </summary>
     public static class Notifier
     {
-        public static event Action<TaskInfo, NotifyInfo> NotifyMsg;
+        public static event Action<TaskInfo, NotifyInfo> NotifyMsgEvent;
 
-        public static MsgLevel MsgLevel = MsgLevel.Normal;
+        public static event Action<TaskInfo, NotifyInfo> NotifySysErrorMsgEvent;
 
+        public static MsgLevel MsgLevel = MsgLevel.Info| MsgLevel.Error | MsgLevel.Warn;
 
-        internal  static void OnNotifyMsg(TaskInfo taskInfo, NotifyInfo notifyInfo)
+        internal  static void OnNotifyMsg(TaskInfo task, NotifyInfo notify)
         {
             try
             {
-                if ((notifyInfo.MsgLevel & MsgLevel) != notifyInfo.MsgLevel) return;
+                if ((notify.MsgLevel & MsgLevel) != notify.MsgLevel) return;
+                if(NotifyMsgEvent == null) return;
 
-                NotifyMsg?.Invoke(taskInfo, notifyInfo);
-            
-                taskInfo?.RegArgs?.TaskEvent?.Invoke(taskInfo, notifyInfo);
+                NotifyMsgEvent.Invoke(task, notify);
             }
-            catch 
+            catch(Exception ex)
             {
-               // throw new CustomException(SysMsgType.SysError,"订阅方法异常", ex.Message);
+                SysErrorMsg(task, ex);
             }
         }
+
+        public static void SysErrorMsg(TaskInfo task, Exception ex)
+        {
+            var notify = new NotifyInfo()
+            {
+                Message = ex.Message,
+                MsgLevel = MsgLevel.Fault,
+                Track = ex.StackTrace
+            };
+
+            //记录系统日志
+            SysLog.WriteError(task, notify);
+
+            if ((notify.MsgLevel & MsgLevel) != notify.MsgLevel) return;
+
+            NotifySysErrorMsgEvent?.Invoke(task, notify);
+        }
+
 
         /// <summary>
-        /// 收集自定义信息
+        /// 记录测试信息
         /// </summary>
-        /// <param name="taskName"></param>
-        /// <param name="msgCode"></param>
         /// <param name="msg"></param>
-        /// <param name="msgLevel"></param>
-        public static void CollectCustomMsg(string taskName, MessageCode msgCode, string msg, MsgLevel msgLevel = MsgLevel.Normal)
-        {
-            var taskInfo  = new TaskInfo(taskName);
-            var notifyInfo = new NotifyInfo(msgCode,  msg, null, msgLevel);
-            OnNotifyMsg(taskInfo, notifyInfo);
-        }
-
-        public static void CollectTaskMsg(MessageCode msgCode, string msg, MsgLevel msgLevel = MsgLevel.Normal)
+        public static void DebugMsg(string msg)
         {
             var taskInfo = Watcher.CurrentTask;
-            var notifyInfo = new NotifyInfo(msgCode, msg, null, msgLevel);
+
+            var notifyInfo = new NotifyInfo()
+            {
+                Message = msg,
+                MsgLevel =  MsgLevel.Debug,
+            };
+
             OnNotifyMsg(taskInfo, notifyInfo);
         }
 
         /// <summary>
-        /// 收集自定义信息
+        /// 广播消息，用于模块间消息通知
         /// </summary>
-        /// <param name="taskInfo"></param>
-        /// <param name="msgCode"></param>
+        /// <param name="id"></param>
         /// <param name="msg"></param>
-        /// <param name="msgLevel"></param>
-        public static void CollectTaskMsg(TaskInfo taskInfo, MessageCode msgCode, string msg, MsgLevel msgLevel = MsgLevel.Normal)
+        public static void BroadcastMsg(int id,  string msg)
         {
-            var notifyInfo = new NotifyInfo(msgCode, msg, null, msgLevel);
-            OnNotifyMsg(taskInfo, notifyInfo);
+            var taskInfo = Watcher.CurrentTask;
+
+            var notifyInfo = new NotifyInfo()
+            {
+                BroadcastId = id,
+                Message = msg,
+                MsgLevel = MsgLevel.Notice
+            };
+
+            //广播信息时， 暂时标记状态为等待状态
+            taskInfo.SetRunStatus(RunStatus.Waiting, notifyInfo);
         }
+     
     }
 }

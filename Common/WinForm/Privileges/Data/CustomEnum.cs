@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CSFramework.Common.WinForm.Data
+namespace CSFramework.Common.WinForm.Privileges.Data
 {
     public enum FuncType
     {
@@ -24,6 +20,10 @@ namespace CSFramework.Common.WinForm.Data
         /// 内容
         /// </summary>
         Context,
+        /// <summary>
+        /// 列表内容
+        /// </summary>
+        ListContext,
     }
 
     /// <summary>
@@ -33,13 +33,21 @@ namespace CSFramework.Common.WinForm.Data
     public enum OperaType
     {
         /// <summary>
-        /// 拥有
+        /// 可浏览
         /// </summary>
-        Visible = 01,
+        Browsable = 01,
         /// <summary>
         /// 编辑
         /// </summary>
         Edit = 02,
+        /// <summary>
+        /// 添加 列表权限
+        /// </summary>
+        Add = 03,
+        /// <summary>
+        /// 删除 列表权限                                                                                                                                                               
+        /// </summary>
+        Del = 04,
 
     }
 }

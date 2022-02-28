@@ -84,9 +84,8 @@ namespace CSFramework.MVVM.Helper
             }
             catch (Exception e)
             {
-               Notifier.CollectCustomMsg("配置信息同步", MessageCode.Fault, e.Message);
+               Notifier.DebugMsg($"配置信息同步失败,{e.Message}");
             }
-          
         }
     }
 }

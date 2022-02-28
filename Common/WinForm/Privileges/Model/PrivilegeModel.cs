@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSFramework.Common.WinForm.Data;
+using CSFramework.Common.WinForm.Privileges.Data;
 using CSFramework.MVVM.Models;
 
 namespace CSFramework.Common.WinForm.Privileges.Model

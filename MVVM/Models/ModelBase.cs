@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using CSFramework.MVVM.Attributes;
 using CSFramework.MVVM.Data;
@@ -209,31 +211,42 @@ namespace CSFramework.MVVM.Models
 
         #endregion
 
-     
 
+       
 
 
         #region[保护方法]
-        protected void SetPropertyValue<T>(T newValue, ref T curValue, string propertyName, string otherPropertyName = null)
+
+        /// <summary>
+        /// 设置属性值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="newValue"></param>
+        /// <param name="curValue"></param>
+        /// <param name="propertyName"></param>
+        protected void SetPropertyValue<T>(T newValue, ref T curValue, [CallerMemberName] string propertyName = null)
         {
-            if (Equals(newValue, curValue)) return;
+
+            if (string.IsNullOrEmpty(propertyName)) throw new ArgumentNullException(propertyName);
+
+            if (EqualityComparer<T>.Default.Equals(newValue, curValue)) return;
 
             curValue = newValue;
+
+            if (!Changed) Changed = true;
+
+            if (PropertyChanged == null) return;
 
             //模型在异步线程应用时需要考虑同步数据
             if (SynchronizationContext == null)
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             else
             {
-                SynchronizationContext.Send(t=>PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)) , null);
+                SynchronizationContext.Send(
+                    t => PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName)), null);
             }
-            
-            if(otherPropertyName != null) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(otherPropertyName));
-
-            //赋值后标注, 值改变了
-            if (!Changed) Changed = true;
         }
         #endregion
 

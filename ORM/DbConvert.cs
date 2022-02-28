@@ -8,7 +8,7 @@ namespace CSFramework.ORM
     public class DbConvert
     {
 
-        public static ConnectionConfig DbInfoToConnectionConfig(DbInfo info)
+        public static ConnectionConfig DbInfoToConnectionConfig(DbConnInfo info)
         {
             var dbConfig = new ConnectionConfig()
             {
@@ -20,7 +20,7 @@ namespace CSFramework.ORM
             return dbConfig;
         }
 
-        public static string ToConnString(DbInfo info)
+        public static string ToConnString(DbConnInfo info)
         {
             switch (info.DbType)
             {

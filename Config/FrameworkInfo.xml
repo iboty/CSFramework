@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameworkInfo>
-  <FactoryInfoList>
+  <FactoryInfos>
     <FactoryInfo Name="默认业务工厂" FactoryType="MEF" LayerType="Bll" IsDefault="true" LibFileRule="*.Bll.dll" />
     <FactoryInfo Name="默认数据工厂" FactoryType="MEF" LayerType="Dal" IsDefault="true" LibFileRule="*.Dal.dll" />
-  </FactoryInfoList>
-  <DbInfoList>
+  </FactoryInfos>
+  <DbConnInfos>
     <DbInfo ConnName="默认数据库" ServerIp="127.0.0.1" Port="3306" DbName="DbInstance" User="root" Password="123456" DbType="MySql" IsDefault="true" />
-  </DbInfoList>
+  </DbConnInfos>
+  <LogInfo >
 </FrameworkInfo>

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSFramework.Common.WinForm.Privileges.Data;
+using CSFramework.Common.WinForm.Privileges.Model;
+using System;
 using System.Reflection;
 using System.Windows.Forms;
-using CSFramework.Common.WinForm.Data;
-using CSFramework.Common.WinForm.Privileges.Model;
 
 namespace CSFramework.Common.WinForm.Privileges.Helper
 {
@@ -19,25 +18,25 @@ namespace CSFramework.Common.WinForm.Privileges.Helper
         public static PrivilegeModel GetPrivilegeModel(Control control, PrivilegeModel parentModel = null)
         {
 
-            var controlDesc = control as IControlDesc;
+            var desc = control as IPrivilegesDesc;
             PrivilegeModel model = null;
 
-            switch (controlDesc?.FuncType)
+            switch (desc?.FuncType)
             {
                 case FuncType.Element:
                 case FuncType.Context:
-                    return ControlDescToModel(controlDesc, parentModel);
+                    return PrivilegeDescToModel(desc, parentModel);
 
                 case FuncType.RootMenu:
-                    model = ControlDescToModel(controlDesc, parentModel);
+                    model = PrivilegeDescToModel(desc, parentModel);
                     parentModel = model;
                     break;
 
                 case FuncType.Menu:
-                    model = ControlDescToModel(controlDesc, parentModel);
+                    model = PrivilegeDescToModel(desc, parentModel);
                     parentModel = model;
 
-                    control = GetControlFromPath(controlDesc.ViewPath);
+                    control = GetControlFromPath(desc.ViewPath);
                     if (control == null) return model;
                     break;
             }
@@ -55,7 +54,7 @@ namespace CSFramework.Common.WinForm.Privileges.Helper
             return model;
         }
 
-        public static PrivilegeModel ControlDescToModel(IControlDesc desc, PrivilegeModel parentModel)
+        public static PrivilegeModel PrivilegeDescToModel(IPrivilegesDesc desc, PrivilegeModel parentModel)
         {
             if (desc == null) return null;
 

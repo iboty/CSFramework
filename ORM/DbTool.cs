@@ -8,7 +8,7 @@ namespace CSFramework.ORM
 {
     public static class DbTool
     {
-        public static void LocalEntitySync(string entityNamespace, DbInfo info= null)
+        public static void LocalEntitySync(string entityNamespace, DbConnInfo info= null)
         {
             var dbClient = DbFactory.CreateDb();
             var dbArray = dbClient.DbMaintenance.GetDataBaseList(null);
@@ -18,20 +18,20 @@ namespace CSFramework.ORM
         }
 
 
-        public static List<DbTableInfo> GetTableList(DbInfo info)
+        public static List<DbTableInfo> GetTableList(DbConnInfo info)
         {
             var client = DbFactory.CreateDb(info);
             var tables = client.DbMaintenance.GetTableInfoList();
             return tables;
         }
 
-        public static void CheckConnect(DbInfo info)
+        public static void CheckConnect(DbConnInfo info)
         {
             var client = DbFactory.CreateDb(info);
              client.Open();
         }
 
-        public static void CreatorCode(DbInfo info, string path ,string[] tableArray = null )
+        public static void CreatorCode(DbConnInfo info, string path ,string[] tableArray = null )
         {
             var client = DbFactory.CreateDb(info);
             if(tableArray == null) client.DbFirst.CreateClassFile(path);
