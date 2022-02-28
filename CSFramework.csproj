@@ -196,8 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\WinForm\Common\" />
-    <Folder Include="Controls\Data\" />
-    <Folder Include="Tool\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dlls\CSkin.dll" />

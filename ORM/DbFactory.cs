@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using CSFramework.Common;
 using CSFramework.Common.Data;
-using CSFramework.Common.Helper;
 using SqlSugar;
 
 namespace CSFramework.ORM
