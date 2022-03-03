@@ -64,15 +64,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetSpeech, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Dlls\DotNetSpeech.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>Dlls\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\Newtonsoft.Json.dll</HintPath>
@@ -86,7 +81,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
@@ -95,65 +89,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommLib\Converts\DESConvert.cs" />
     <Compile Include="Common\Data\DataEnum.cs" />
     <Compile Include="Common\Data\SysLogInfo.cs" />
     <Compile Include="Common\Data\DbConnInfo.cs" />
     <Compile Include="Common\Data\FactoryInfo.cs" />
-    <Compile Include="Common\Data\IpInfo.cs" />
-    <Compile Include="Common\Data\PrinterStatusInfo.cs" />
     <Compile Include="Common\Data\FrameworkInfo.cs" />
+    <Compile Include="Common\Helper\XmlHelper.cs" />
     <Compile Include="Common\SysInfoLoader.cs" />
     <Compile Include="Common\Helper\ComConvert.cs" />
-    <Compile Include="Common\Helper\EsHelper.cs" />
-    <Compile Include="Common\Helper\ImageHelper.cs" />
-    <Compile Include="Common\Helper\IniFileHelper.cs" />
-    <Compile Include="Common\Helper\Md5Helper.cs" />
-    <Compile Include="Common\Helper\NetHelper.cs" />
-    <Compile Include="Common\Helper\Pinyin.cs" />
-    <Compile Include="Common\Helper\InputPwdCache.cs" />
-    <Compile Include="Common\Helper\PrinterHelper.cs" />
-    <Compile Include="Common\Helper\SizeHelper.cs" />
-    <Compile Include="Common\Helper\StringHelper.cs" />
-    <Compile Include="Common\Helper\TimerHelper.cs" />
-    <Compile Include="Common\Helper\Translator.cs" />
-    <Compile Include="Common\Helper\VoiceHelper.cs" />
-    <Compile Include="Common\Helper\XmlHelper.cs" />
-    <Compile Include="Common\Helper\FileHelper.cs" />
     <Compile Include="Common\Interface\IBaseElement.cs" />
     <Compile Include="Common\SysLog.cs" />
-    <Compile Include="Common\Tool\VoicePlayer.cs" />
-    <Compile Include="Common\WinForm\Controls\DataGridViewEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Common\WinForm\Privileges\Data\CustomEnum.cs" />
-    <Compile Include="Common\WinForm\Privileges\Data\IPrivilegesDesc.cs" />
-    <Compile Include="Common\WinForm\Privileges\Helper\DataHelper.cs" />
-    <Compile Include="Common\WinForm\Privileges\Model\PrivilegeModel.cs" />
-    <Compile Include="Common\WinForm\Privileges\StyleBase\BaseView.cs">
+    <Compile Include="Privileges\Data\CustomEnum.cs" />
+    <Compile Include="Privileges\Data\IPrivileges.cs" />
+    <Compile Include="Privileges\Helper\DataHelper.cs" />
+    <Compile Include="Privileges\Model\PrivilegeModel.cs" />
+    <Compile Include="Privileges\StyleBase\BaseView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\Privileges\StyleBase\BButton.cs">
+    <Compile Include="Privileges\StyleBase\BButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\Privileges\StyleBase\BDataGridView.cs">
+    <Compile Include="Privileges\StyleBase\BDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\Privileges\StyleBase\BLabel.cs" />
-    <Compile Include="Common\WinForm\Privileges\StyleBase\BMenuButton.cs">
+    <Compile Include="Privileges\StyleBase\BLabel.cs" />
+    <Compile Include="Privileges\StyleBase\BMenuButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinForm\Privileges\StyleBase\BTextBox.cs">
+    <Compile Include="Privileges\StyleBase\BTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\FacePlayer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Drive\FsDriver.cs" />
-    <Compile Include="Drive\WinDriveApi.cs" />
-    <Compile Include="MVVM\Attributes\BindPropertyAttr.cs" />
     <Compile Include="MVVM\Attributes\ConfigLinkAttr.cs" />
-    <Compile Include="MVVM\Attributes\InterfaceAttr.cs" />
     <Compile Include="MVVM\Attributes\ValuePropertyAttr.cs" />
     <Compile Include="MVVM\Data\TaskException.cs" />
     <Compile Include="MVVM\Data\DataEnum.cs" />
@@ -178,14 +144,13 @@
     <Compile Include="MVVM\Roles\Watcher.cs" />
     <Compile Include="ORM\Data\DataTypeLen.cs" />
     <Compile Include="ORM\Data\DbNotifyEventArgs.cs" />
-    <Compile Include="ORM\Data\DbVerInfo.cs" />
+    <Compile Include="ORM\Data\DbUpdateRecordEntity.cs" />
     <Compile Include="ORM\DbConvert.cs" />
     <Compile Include="ORM\DbFactory.cs" />
-    <Compile Include="ORM\DbMintor\SqlServerMonitor.cs" />
-    <Compile Include="ORM\DbTool.cs" />
-    <Compile Include="ORM\ExFactory\MonitorFactory.cs" />
-    <Compile Include="ORM\ExFunc\DbManage.cs" />
-    <Compile Include="ORM\ExFunc\DbMonitorEx.cs" />
+    <Compile Include="ORM\ExFunc\DbMonitorProvider\SqlServerProvider.cs" />
+    <Compile Include="ORM\ExFunc\DbMonitorProvider\MonitorFactory.cs" />
+    <Compile Include="ORM\ExFunc\DbManageExFunc.cs" />
+    <Compile Include="ORM\ExFunc\DbMonitorExFunc.cs" />
     <Compile Include="ORM\Interface\IDbMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -194,23 +159,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Common\WinForm\Common\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Dlls\CSkin.dll" />
-    <None Include="Dlls\DotNetSpeech.dll" />
     <None Include="Dlls\MySql.Data.dll" />
     <None Include="Dlls\Newtonsoft.Json.dll" />
     <None Include="Dlls\SqlSugar.dll" />
-    <None Include="Resources\msg_bg.png" />
-    <None Include="Resources\btn1.png" />
-    <None Include="Resources\btn2_bg.png" />
-    <None Include="Resources\msg_error.png" />
-    <None Include="Resources\msg_ask.png" />
-    <None Include="Resources\msg_warn.png" />
-    <None Include="Resources\msg_Info.png" />
-    <None Include="Resources\gif_bg.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

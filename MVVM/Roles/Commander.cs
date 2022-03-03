@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Timers;
-using System.Windows.Forms;
-using CSFramework.Common.Data;
-using CSFramework.Common.WinForm.Privileges.Data;
 using CSFramework.MVVM.Data;
 using CSFramework.MVVM.Interface;
-using Timer = System.Timers.Timer;
 
 // ReSharper disable once IdentifierTypo
 namespace CSFramework.MVVM.Roles

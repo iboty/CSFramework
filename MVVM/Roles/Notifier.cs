@@ -13,7 +13,7 @@ namespace CSFramework.MVVM.Roles
 
         public static event Action<TaskInfo, NotifyInfo> NotifySysErrorMsgEvent;
 
-        public static MsgLevel MsgLevel = MsgLevel.Info| MsgLevel.Error | MsgLevel.Warn;
+        public static MsgLevel MsgLevel = SysInfoLoader.FrameworkInfo.SysLogInfo.MsgLevel;
 
         internal  static void OnNotifyMsg(TaskInfo task, NotifyInfo notify)
         {
@@ -30,7 +30,12 @@ namespace CSFramework.MVVM.Roles
             }
         }
 
-        public static void SysErrorMsg(TaskInfo task, Exception ex)
+        /// <summary>
+        /// 用于内部错误捕获
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="ex"></param>
+        internal static void SysErrorMsg(TaskInfo task, Exception ex)
         {
             var notify = new NotifyInfo()
             {

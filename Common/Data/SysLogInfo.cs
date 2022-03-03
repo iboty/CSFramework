@@ -1,6 +1,5 @@
 ﻿using System.Xml.Serialization;
 using CSFramework.MVVM.Data;
-using SqlSugar;
 
 namespace CSFramework.Common.Data
 {
@@ -14,14 +13,13 @@ namespace CSFramework.Common.Data
         ///  消息等级过滤
         /// </summary>
         [XmlAttribute]
-        public MsgLevel MsgLevel { get; set; }
+        public MsgLevel MsgLevel { get; set; } = MsgLevel.Info | MsgLevel.Error | MsgLevel.Warn;
 
         /// <summary>
         /// 目标文件夹路径
         /// </summary>
         [XmlAttribute]
-        public string DstDirPath { get; set; } = "./SysLog";
-
+        public string DstDirPath { get; set; } = ".\\SysLog";
 
     }
 }

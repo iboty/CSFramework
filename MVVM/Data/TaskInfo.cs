@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using CSFramework.Common.Helper;
 using CSFramework.MVVM.Interface;
 using CSFramework.MVVM.Roles;

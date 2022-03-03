@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using CSFramework.MVVM.Attributes;
-using CSFramework.MVVM.Data;
 using CSFramework.MVVM.Helper;
 
 namespace CSFramework.MVVM.Models

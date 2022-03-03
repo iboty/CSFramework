@@ -1,6 +1,4 @@
-﻿using CSFramework.Common.Data;
-
-namespace CSFramework.MVVM.Interface
+﻿namespace CSFramework.MVVM.Interface
 {
     public interface IFactory
     {

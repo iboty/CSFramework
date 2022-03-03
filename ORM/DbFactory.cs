@@ -12,7 +12,7 @@ namespace CSFramework.ORM
     public static class  DbFactory
     {
         private static readonly Dictionary<string, ConnectionConfig> ConnDictionary = new Dictionary<string, ConnectionConfig>();
-        private static ConnectionConfig _defaultConnectionConfig;
+        private static ConnectionConfig _deftConnConfig;
         /// <summary>
         /// 从配置中加载连接实例
         /// </summary>
@@ -25,12 +25,12 @@ namespace CSFramework.ORM
                 var connInfo = DbConvert.DbInfoToConnectionConfig(dbInfo);
                 ConnDictionary.Add(dbInfo.ConnName, connInfo);
 
-                if (dbInfo.IsDefault && _defaultConnectionConfig == null) _defaultConnectionConfig = connInfo;
+                if (dbInfo.IsDefault) _deftConnConfig = connInfo;
             }
         }
 
         /// <summary>
-        /// 从配置文件中创建Db
+        /// 创建db数据操作对象实体
         /// </summary>
         /// <param name="key">配置文件实例名</param>
         /// <returns></returns>
@@ -40,8 +40,8 @@ namespace CSFramework.ORM
 
             if (key == null)
             {
-                if (_defaultConnectionConfig == null) throw new Exception("默认连接对象为空");
-                return new SqlSugarClient(_defaultConnectionConfig);
+                if (_deftConnConfig == null) throw new Exception("默认连接对象为空");
+                return new SqlSugarClient(_deftConnConfig);
             }
             if (!ConnDictionary.ContainsKey(key)) throw new Exception($"连接信息中没有发现实例【{key}】");
             return new SqlSugarClient(ConnDictionary[key]);

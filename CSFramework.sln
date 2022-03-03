@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSFramework", "CSFramework.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPrivilege", "..\TestPrivilege\TestPrivilege.csproj", "{34E268E3-E4F5-44BC-993E-4A14F3FBB32C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommLib", "..\CommLib\CommLib.csproj", "{B488B80C-0E75-424D-8566-83DA59F64D45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{6BCCCD2F-DC55-4DAD-B3BD-FFD35DE8B227}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,18 @@ Global
 		{34E268E3-E4F5-44BC-993E-4A14F3FBB32C}.Release|x64.Build.0 = Release|Any CPU
 		{34E268E3-E4F5-44BC-993E-4A14F3FBB32C}.Release|x86.ActiveCfg = Release|Any CPU
 		{34E268E3-E4F5-44BC-993E-4A14F3FBB32C}.Release|x86.Build.0 = Release|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Debug|x64.Build.0 = Debug|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Debug|x86.Build.0 = Debug|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Release|x64.ActiveCfg = Release|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Release|x64.Build.0 = Release|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Release|x86.ActiveCfg = Release|Any CPU
+		{B488B80C-0E75-424D-8566-83DA59F64D45}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

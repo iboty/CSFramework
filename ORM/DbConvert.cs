@@ -26,19 +26,20 @@ namespace CSFramework.ORM
             {
                 case DbType.SqlServer:
                     var port = string.IsNullOrEmpty(info.Port) ? string.Empty : "," + info.Port + ";";
-                    var connString = $"server ={info.ServerIp} {port}; database ={info.DbName}; uid ={info.User}; pwd ={info.Password}";
+                    var connString = $"server={info.ServerIp} {port};database={info.DbName};uid={info.User};pwd={info.Password}";
                     return connString;
 
                 case DbType.Oracle:
                     port = string.IsNullOrEmpty(info.Port) ? "1521" : info.Port;
                     connString =
-                        $"Data Source=(DESCRIPTION =(ADDRESS_LIST =(ADDRESS =(PROTOCOL = TCP)(HOST = {info.ServerIp})(PORT = {port})))(CONNECT_DATA =(SERVICE_NAME = {info.DbName})));User id={info.User};Password={info.Password};";
+                        $"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL = TCP)(HOST={info.ServerIp})(PORT={port})))(CONNECT_DATA=(SERVICE_NAME={info.DbName})));User id={info.User};Password={info.Password};";
                     return connString;
 
                 case DbType.MySql:
                     port = string.IsNullOrEmpty(info.Port) ? string.Empty : ";Port=" + info.Port;
                     connString = $"Server={info.ServerIp}{port};Database = {info.DbName}; User = {info.User}; Password = {info.Password};Allow User Variables=true";
                     return connString;
+
                 case DbType.Sqlite:
                     connString = $"Data Source={AppDomain.CurrentDomain.BaseDirectory}{info.DbFilePath};";
                     return connString;

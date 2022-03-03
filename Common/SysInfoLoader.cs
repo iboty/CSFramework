@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CSFramework.Common.Data;
 using CSFramework.Common.Helper;
-using CSFramework.MVVM.Roles;
-using SqlSugar;
 
 namespace CSFramework.Common
 {
@@ -16,7 +10,7 @@ namespace CSFramework.Common
     /// </summary>
     public  static class SysInfoLoader
     {
-        public static string FileDir = $@"{AppDomain.CurrentDomain.BaseDirectory}Config";
+        public static string FileDir = $"{AppDomain.CurrentDomain.BaseDirectory}Config";
         public static string FileName = "FrameworkInfo.xml";
         public static string FilePath = $"{FileDir}\\{FileName}";
 
@@ -42,7 +36,6 @@ namespace CSFramework.Common
                 {
                     FrameworkInfo = new FrameworkInfo();
                     FrameworkInfo.SetDefaultValue();
-
                     Save();
                 }
             }
